@@ -99,3 +99,25 @@ def cancel_reserve(reserve_id,access_token):
 
     assert res.json()['id']==reserve_id
     assert res.json()['state']==4
+
+def refresh_token(refresh_token):
+
+    header={
+        "User-Agent": "okhttp/3.12.1",
+        "Authorization":"Basic NTFlZmVkNjktYjQ0MC00N2Q3LThhNTMtMmEzY2ViZTY1YzkyOg=="
+    }
+
+    data={
+        "grant_type":"refresh_token",
+        "uuid":"54ed48f9-9f9e-4162-8542-2ed8f35ebb50",
+        "refresh_token":refresh_token
+    }
+
+    res=requests.post("https://auth.ridegoshareapi.com/oauth/token",data=data,headers=header)
+
+    data=res.json()
+
+    access_token=data["access_token"]
+    refresh_token=data['refresh_token']
+
+    return access_token,refresh_token

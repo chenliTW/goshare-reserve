@@ -19,7 +19,9 @@ def get_data():
         'refresh_token':"..."+r.get('refresh_token')[-50:].decode(),
         'plate_number':r.get('plate_number'),
         'scooter_id':r.get('scooter_id'),
-        'reserve_id':r.get('reserve_id')
+        'reserve_id':r.get('reserve_id'),
+        'reserve_count':r.get('reserve_count'),
+        'active':r.get('active')
     }
     
     return pprint.pformat(data,sort_dicts=False)
@@ -56,6 +58,8 @@ def plate():
     r.set('scooter_id',scooter_id)
     reserve_id=utils.reserve(scooter_id,access_token)
     r.set('reserve_id',reserve_id)
+    r.set('reserve_count',0)
+    r.set('active',1)
     return render_template('index.html',data=get_data())
 
 if __name__ == '__main__':
