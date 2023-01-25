@@ -71,6 +71,7 @@ def cancel():
     r.set('reserve_id',None)
     r.set('reserve_count',0)
     r.set('active',0)
+    r.set('plate_number',None)
     return render_template('index.html',data=get_data())
 
 if __name__ == '__main__':
