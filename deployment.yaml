@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: goshare-deployment
+spec:
+  selector:
+    matchLabels:
+      app: goshare
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: goshare
+    spec:
+      containers:
+      - name: goshare
+        image: registry.le37.tw/root/goshare:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: goshare
+spec:
+  selector:
+    app: goshare
+  ports:
+    - protocol: TCP
+      port: 80
