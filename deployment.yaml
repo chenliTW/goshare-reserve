@@ -14,10 +14,14 @@ spec:
         app: goshare
     spec:
       containers:
-      - name: goshare
-        image: registry.le37.tw/root/goshare:latest
+      - name: goshare-commander
+        image: registry.le37.tw/default/goshare/goshare:latest
+        command: ["sh","-c","/entrypoint.sh python3 /src/commander.py"]
         ports:
         - containerPort: 80
+      - name: goshare-worker
+        image: registry.le37.tw/default/goshare/goshare:latest
+        command: ["sh","-c","/entrypoint.sh python3 /src/worker.py"]
 ---
 apiVersion: v1
 kind: Service
