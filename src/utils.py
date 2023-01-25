@@ -50,6 +50,8 @@ def submit_verify_code(phone_number,code_verifier,sms_code):
 
     data=res.json()
 
+    print(data)
+
     access_token=data["access_token"]
     refresh_token=data['refresh_token']
 
