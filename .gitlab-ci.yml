@@ -12,9 +12,7 @@ services:
 stages:
   - build
   - test
-  - publish
-  - stg-deploy
-  - prod-deploy
+  - deploy
 
 build:
   stage: build
@@ -36,25 +34,16 @@ test:
     - docker pull $CI_IMAGE
     - docker run $CI_IMAGE python3 /src/commander.py
     - docker run $CI_IMAGE python3 /src/worker.py
-
-publish:
-  stage: publish
-  only:
-    - main
-  script:
-    - echo "publish job"
-
-stg-deploy:
-  stage: stg-deploy
-  only:
-    - main
-  script:
-    - echo "Staging deploy job"
-
-prod-deploy:
-  stage: prod-deploy
-  only:
-    - main
-  script:
-    - echo "Production deploy job"
   when: manual
+  
+deploy:
+  stage: deploy
+  image: portainer/kubectl-shell:latest
+  only:
+    - main
+  before_script:
+    - mkdir ~/.kube/
+    - echo $KUBE_CONFIG | base64 -d > ~/.kube/config
+    - sed -i "s/registry.le37.tw\/default\/goshare\/goshare:latest/${CI_IMAGE//\//\\/}/g" deployment.yaml
+  script:
+    - kubectl --kubeconfig ~/.kube/config apply -f deployment.yaml -n le37tw
