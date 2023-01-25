@@ -63,7 +63,7 @@ def plate():
             pass
     reserve_id=utils.reserve(scooter_id,access_token)
     r.set('reserve_id',reserve_id)
-    r.set('reserve_count',0)
+    r.set('reserve_count',1)
     r.set('active',1)
     return render_template('index.html',data=get_data())
 
