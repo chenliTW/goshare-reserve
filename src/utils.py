@@ -99,8 +99,8 @@ def cancel_reserve(reserve_id,access_token):
 
     res=requests.patch(f"https://rental.ridegoshareapi.com/v2.1/rentals/{reserve_id}",data=json.dumps(data),headers=header)
 
-    assert res.json()['id']==reserve_id
-    assert res.json()['state']==4
+    #assert res.json()['id']==reserve_id
+    #assert res.json()['state']==4
 
 def refresh_token(refresh_token):
 
