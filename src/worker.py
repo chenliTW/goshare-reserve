@@ -1,7 +1,6 @@
 import time
 import redis
 import types
-
 import utils
 
 retry_time = 3
@@ -48,4 +47,8 @@ while True:
         reserve_id=utils.reserve(r.get('scooter_id').decode(),r.get('access_token').decode())
         print("reserved: "+str(reserve_id))
         r.set('reserve_id',reserve_id)
-    time.sleep(540)
+    for i in range(36):
+        f=open('check','w+')
+        f.write(str(int(time.time())))
+        f.close()
+        time.sleep(15)
