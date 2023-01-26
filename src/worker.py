@@ -48,7 +48,7 @@ while True:
         print("reserved: "+str(reserve_id))
         r.set('reserve_id',reserve_id)
     for i in range(36):
-        f=open('check','w+')
+        f=open('/src/check','w+')
         f.write(str(int(time.time())))
         f.close()
         time.sleep(15)
