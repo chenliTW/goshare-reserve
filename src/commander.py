@@ -56,11 +56,6 @@ def plate():
     scooter_id = utils.get_scooter_id(plate_number)
     r.set('plate_number',plate_number)
     r.set('scooter_id',scooter_id)
-    if r.get('active')!=None and int(r.get('active'))==1:
-        try:
-            utils.cancel_reserve(r.get('reserve_id').decode(),r.get('access_token').decode())
-        except:
-            pass
     reserve_id=utils.reserve(scooter_id,access_token)
     r.set('reserve_id',reserve_id)
     r.set('reserve_count',1)
