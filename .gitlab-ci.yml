@@ -19,8 +19,8 @@ build:
   before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
-    - docker build -t $CI_IMAGE .
-    - docker push $CI_IMAGE
+    - docker build -t $CI_IMAGE:latest .
+    - docker push $CI_IMAGE:latest
 
 test:
   stage: test
@@ -42,6 +42,6 @@ deploy:
   before_script:
     - mkdir ~/.kube/
     - echo $KUBE_CONFIG | base64 -d > ~/.kube/config
-    - sed -i "s/registry.le37.tw\/le37\/goshare\/goshare:latest/${CI_IMAGE//\//\\/}/g" deployment.yaml
+    #- sed -i "s/registry.le37.tw\/le37\/goshare\/goshare:latest/${CI_IMAGE//\//\\/}/g" deployment.yaml
   script:
     - kubectl --kubeconfig ~/.kube/config apply -f deployment.yaml -n le37tw
