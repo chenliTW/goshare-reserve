@@ -4,7 +4,7 @@ import pprint
 
 import utils
 
-r = redis.StrictRedis(host='192.168.100.200', port=6379, db=1,password="6ZSiu3JeTJ")
+r = redis.StrictRedis(host='redis-master.default.svc.cluster.local', port=6379, db=1,password="prbzlVydfm")
 #r.set('foo', 'bar')
 #print(r.get('foo'))
 
@@ -23,13 +23,13 @@ def get_data():
         'reserve_count':r.get('reserve_count'),
         'active':r.get('active')
     }
-    
+
     return pprint.pformat(data,sort_dicts=False)
 
 @app.route('/')
 def index():
     return render_template('index.html',data=get_data())
-    
+
 @app.route('/tel')
 def tel():
     tel_num = request.args.get('tel_num')
