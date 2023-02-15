@@ -11,18 +11,21 @@ r = redis.StrictRedis(host='redis-master.default.svc.cluster.local', port=6379, 
 app = Flask(__name__)
 
 def get_data():
-    data={
-        'tel_num':r.get('tel_num'),
-        'code_challenger':r.get('code_challenger'),
-        'verify_code':r.get('verify_code'),
-        'access_token':"..."+r.get('access_token')[-50:].decode(),
-        'refresh_token':"..."+r.get('refresh_token')[-50:].decode(),
-        'plate_number':r.get('plate_number'),
-        'scooter_id':r.get('scooter_id'),
-        'reserve_id':r.get('reserve_id'),
-        'reserve_count':r.get('reserve_count'),
-        'active':r.get('active')
-    }
+    try:
+        data={
+            'tel_num':r.get('tel_num'),
+            'code_challenger':r.get('code_challenger'),
+            'verify_code':r.get('verify_code'),
+            'access_token':"..."+r.get('access_token')[-50:].decode(),
+            'refresh_token':"..."+r.get('refresh_token')[-50:].decode(),
+            'plate_number':r.get('plate_number'),
+            'scooter_id':r.get('scooter_id'),
+            'reserve_id':r.get('reserve_id'),
+            'reserve_count':r.get('reserve_count'),
+            'active':r.get('active')
+        }
+    except:
+        pass
 
     return pprint.pformat(data,sort_dicts=False)
 
