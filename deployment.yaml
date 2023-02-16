@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: goshare-commander
-        image: registry.le37.tw/le37/goshare/goshare:latest
+        image: registry.le37.tw/le37/goshare:latest
         command: ["sh","-c","/entrypoint.sh python3 /src/commander.py"]
         ports:
         - containerPort: 80
@@ -26,7 +26,7 @@ spec:
           initialDelaySeconds: 15
           periodSeconds: 5
       - name: goshare-worker
-        image: registry.le37.tw/le37/goshare/goshare:latest
+        image: registry.le37.tw/le37/goshare:latest
         command: ["sh","-c","/entrypoint.sh python3 /src/worker.py"]
         livenessProbe:
           exec:
