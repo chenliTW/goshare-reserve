@@ -25,6 +25,7 @@ def get_data():
             'active':r.get('active')
         }
     except:
+        data={}
         pass
 
     return pprint.pformat(data,sort_dicts=False)
