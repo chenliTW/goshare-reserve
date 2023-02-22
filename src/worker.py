@@ -5,7 +5,7 @@ import utils
 
 retry_time = 3
 
-r = redis.StrictRedis(host='redis-master.default.svc.cluster.local', port=6379, db=1,password="MkMlO7hvqf")
+r = redis.StrictRedis(host='redis-master.default.svc.cluster.local', port=6379, db=1,password="ER4LZLToVi")
 
 def decorate_all_in_module(module, decorator):
     for name in dir(module):
