@@ -1,0 +1,1 @@
+python3 src/legacy_standalone_script.py

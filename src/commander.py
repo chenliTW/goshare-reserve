@@ -4,7 +4,7 @@ import pprint
 
 import utils
 
-r = redis.StrictRedis(host='redis-master.default.svc.cluster.local', port=6379, db=1,password="MkMlO7hvqf")
+r = redis.StrictRedis(host='redis-master.default.svc.cluster.local', port=6379, db=1,password="redis_password")
 #r.set('foo', 'bar')
 #print(r.get('foo'))
 
